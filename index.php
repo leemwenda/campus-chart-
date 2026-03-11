@@ -328,25 +328,7 @@ $roles = [
 
       <div class="divider-text">or</div>
 
-      <!-- Demo accounts -->
-      <div class="demo-accounts">
-        <p>Quick Demo — Password: <code style="color:var(--kca-navy)">password</code></p>
-        <div class="demo-row">
-          <span class="label">Admin</span>
-          <span class="val">ADMIN001</span>
-          <button class="demo-fill" onclick="fillDemo('ADMIN001')">Use</button>
-        </div>
-        <div class="demo-row">
-          <span class="label">Staff</span>
-          <span class="val">STF/001</span>
-          <button class="demo-fill" onclick="fillDemo('STF/001')">Use</button>
-        </div>
-        <div class="demo-row">
-          <span class="label">Student</span>
-          <span class="val">KCA/2023/001</span>
-          <button class="demo-fill" onclick="fillDemo('KCA/2023/001')">Use</button>
-        </div>
-      </div>
+     
 
       <div class="form-link" style="margin-top:22px">
         New to KCA Chat? <a href="pages/register.php">Create an account</a>

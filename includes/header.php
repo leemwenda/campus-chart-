@@ -1,11 +1,5 @@
 <?php
-// ============================================================
-// KCA CHART — Shared Layout Header
-// Include at the top of every authenticated page:
-//   $pageTitle = 'Page Name';
-//   $activeNav = 'feed'; // matches nav item keys
-//   require_once '../includes/header.php';
-// ============================================================
+
 require_once __DIR__ . '/../config/auth.php';
 $user = requireLogin();
 $notifCount = unreadNotifCount($user['id']);
@@ -57,10 +51,10 @@ $spaceTypeColors = [
 <body>
 <input type="hidden" name="csrf_token" id="csrf_token" value="<?= $csrf ?>">
 
-<!-- ════════ SIDEBAR OVERLAY (mobile) ════════ -->
+
 <div class="sidebar-overlay" id="sidebar-overlay" onclick="closeSidebar()"></div>
 
-<!-- ════════ SIDEBAR ════════ -->
+
 <aside class="sidebar" id="sidebar">
   <div class="sidebar-header">
     <div class="sidebar-logo-mark">
@@ -161,7 +155,7 @@ $spaceTypeColors = [
   </a>
 </aside>
 
-<!-- ════════ TOPBAR ════════ -->
+
 <header class="topbar">
   <div class="topbar-kca-stripe"></div>
 
@@ -208,10 +202,10 @@ $spaceTypeColors = [
   </div>
 </header>
 
-<!-- ════════ SIDEBAR OVERLAY (mobile) ════════ -->
+
 <div class="sidebar-overlay" id="sidebar-overlay" onclick="toggleSidebar()"></div>
 
-<!-- ════════ BOTTOM NAV (mobile only) ════════ -->
+
 <nav class="bottom-nav" role="navigation" aria-label="Mobile navigation">
   <a href="<?= SITE_URL ?>/pages/feed.php" class="bottom-nav-item <?= ($activeNav==='feed')?'active':'' ?>">
     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/><rect x="14" y="14" width="7" height="7" rx="1"/></svg>
@@ -241,7 +235,7 @@ $spaceTypeColors = [
   </a>
 </nav>
 
-<!-- ════════ NOTIFICATIONS PANEL ════════ -->
+<!--Notification panel (hidden by default) -->
 <div class="notif-panel" id="notif-panel">
   <div class="notif-panel-header">
     <h3>Notifications</h3>

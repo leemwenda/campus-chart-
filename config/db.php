@@ -1,13 +1,13 @@
 <?php
 ob_start(); // Prevent "headers already sent" errors
-// ============================================================
+// kcachart_v4 - A KCA University campus community platform
 // KCA CHART - Database Configuration
 // Edit DB_PASS to match your XAMPP MySQL password (usually empty)
-// ============================================================
+// 
 
 define('DB_HOST', 'localhost');
 define('DB_USER', 'root');
-define('DB_PASS', '');           // Change if you set a MySQL password
+define('DB_PASS', '');          
 define('DB_NAME', 'kcachart');
 define('DB_PORT', 3306);
 

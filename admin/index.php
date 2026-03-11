@@ -811,7 +811,7 @@ function previewBanner(input) {
     </div>
   </div>
 
-  <!-- ACTIVE BANNERS LIST -->
+  
   <div>
     <div class="card">
       <div class="card-header">

@@ -72,7 +72,7 @@ $roleBreakdown = DB::rows("SELECT role, COUNT(*) as cnt FROM users WHERE is_acti
 </div>
 
 <div style="display:grid;grid-template-columns:2fr 1fr;gap:16px;margin-bottom:16px">
-  <!-- Bar chart: daily posts last 14 days -->
+ 
   <div class="card chart-card">
     <div class="card-header"><h3>Daily Posts — Last 14 Days</h3></div>
     <div class="chart-wrap">

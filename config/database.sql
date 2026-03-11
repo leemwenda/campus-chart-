@@ -1,15 +1,9 @@
--- ============================================================
--- KCA CHART — Complete Database Schema v2
--- Real KCA University data: Schools, Courses, Clubs, 2026 Calendar
--- All seed passwords are bcrypt of 'password'
--- ============================================================
+
 
 CREATE DATABASE IF NOT EXISTS kcachart CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
 USE kcachart;
 
--- ─────────────────────────────────────────
--- USERS  (school column added)
--- ─────────────────────────────────────────
+
 CREATE TABLE users (
     id            INT AUTO_INCREMENT PRIMARY KEY,
     student_id    VARCHAR(30) UNIQUE,
@@ -31,9 +25,7 @@ CREATE TABLE users (
     updated_at    DATETIME DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
 );
 
--- ─────────────────────────────────────────
--- SPACES
--- ─────────────────────────────────────────
+
 CREATE TABLE spaces (
     id          INT AUTO_INCREMENT PRIMARY KEY,
     name        VARCHAR(120) NOT NULL,
@@ -60,9 +52,7 @@ CREATE TABLE space_members (
     FOREIGN KEY (user_id)  REFERENCES users(id)  ON DELETE CASCADE
 );
 
--- ─────────────────────────────────────────
--- POSTS
--- ─────────────────────────────────────────
+
 CREATE TABLE posts (
     id         INT AUTO_INCREMENT PRIMARY KEY,
     user_id    INT NOT NULL,
@@ -100,9 +90,7 @@ CREATE TABLE comments (
     FOREIGN KEY (parent_id) REFERENCES comments(id) ON DELETE SET NULL
 );
 
--- ─────────────────────────────────────────
--- EVENTS (category + campus columns added)
--- ─────────────────────────────────────────
+
 CREATE TABLE events (
     id            INT AUTO_INCREMENT PRIMARY KEY,
     title         VARCHAR(200) NOT NULL,
@@ -134,9 +122,7 @@ CREATE TABLE event_rsvps (
     FOREIGN KEY (user_id)  REFERENCES users(id)  ON DELETE CASCADE
 );
 
--- ─────────────────────────────────────────
--- MESSAGES
--- ─────────────────────────────────────────
+
 CREATE TABLE conversations (
     id         INT AUTO_INCREMENT PRIMARY KEY,
     created_at DATETIME DEFAULT CURRENT_TIMESTAMP
@@ -163,9 +149,7 @@ CREATE TABLE messages (
     FOREIGN KEY (sender_id)       REFERENCES users(id)         ON DELETE CASCADE
 );
 
--- ─────────────────────────────────────────
--- NOTIFICATIONS
--- ─────────────────────────────────────────
+
 CREATE TABLE notifications (
     id             INT AUTO_INCREMENT PRIMARY KEY,
     user_id        INT NOT NULL,
@@ -180,9 +164,7 @@ CREATE TABLE notifications (
     FOREIGN KEY (actor_id) REFERENCES users(id) ON DELETE SET NULL
 );
 
--- ─────────────────────────────────────────
--- FOLLOWS
--- ─────────────────────────────────────────
+
 CREATE TABLE follows (
     id           INT AUTO_INCREMENT PRIMARY KEY,
     follower_id  INT NOT NULL,
@@ -194,14 +176,7 @@ CREATE TABLE follows (
 );
 
 
--- ═══════════════════════════════════════════
--- SEED DATA — Real KCA University Data
--- ═══════════════════════════════════════════
 
--- ─────────────────────────────────────────
--- USERS  (all passwords = 'password')
--- LOGIN: Student ID OR email (both supported)
--- ─────────────────────────────────────────
 INSERT INTO users (student_id, full_name, email, password_hash, role, school, department, course, year_of_study) VALUES
 ('ADMIN001','System Administrator','admin@kcau.ac.ke',
  '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi',
@@ -270,9 +245,7 @@ INSERT INTO users (student_id, full_name, email, password_hash, role, school, de
  'BA in Counselling Psychology',1);
 
 
--- ─────────────────────────────────────────
--- SPACES — Real KCA clubs, departments, admin
--- ─────────────────────────────────────────
+
 INSERT INTO spaces (name, slug, description, type, school, created_by) VALUES
 
 -- ADMINISTRATIVE (IDs 1-3)
@@ -442,9 +415,7 @@ INSERT INTO spaces (name, slug, description, type, school, created_by) VALUES
  'professional',NULL,3);
 
 
--- ─────────────────────────────────────────
--- SPACE MEMBERSHIPS
--- ─────────────────────────────────────────
+
 INSERT INTO space_members (space_id, user_id, role) VALUES
 -- Registrar (1) — everyone
 (1,1,'admin'),(1,2,'member'),(1,3,'member'),(1,4,'member'),
@@ -495,9 +466,7 @@ INSERT INTO space_members (space_id, user_id, role) VALUES
 (39,1,'admin'),(39,5,'member'),(39,6,'member'),(39,10,'member'),(39,11,'member'),(39,12,'member'),(39,13,'member');
 
 
--- ─────────────────────────────────────────
--- POSTS — Real KCA context
--- ─────────────────────────────────────────
+
 INSERT INTO posts (user_id, space_id, content, tag, is_pinned) VALUES
 (1,1,'WELCOME TO KCA CHART — the official KCA University campus community platform for the January–April 2026 Trimester. Use this space to connect with fellow students, get campus updates, and collaborate. All students must follow the Registrar Announcements space for official notices.','announcement',1),
 
@@ -540,9 +509,7 @@ INSERT INTO posts (user_id, space_id, content, tag, is_pinned) VALUES
 (13,NULL,'Welcome to all new students joining KCA in the January 2026 trimester! Orientation was January 6 and Matriculation is January 30. Senior students: let us make them feel at home. New students: do not be shy — post your questions here, reach out in the spaces, and explore the clubs. The KCA family is warm!','social',0);
 
 
--- ─────────────────────────────────────────
--- EVENTS — Real 2026 Academic Calendar
--- ─────────────────────────────────────────
+
 INSERT INTO events (title, description, category, event_date, start_time, end_time, location, campus, created_by) VALUES
 
 ('Supplementary & Special Examinations',
@@ -671,9 +638,7 @@ INSERT INTO events (title, description, category, event_date, start_time, end_ti
  'club','2026-03-10','16:00:00','18:30:00','Innovation Lab, Ground Floor','Town Campus',2);
 
 
--- ─────────────────────────────────────────
--- RSVP SEED DATA
--- ─────────────────────────────────────────
+
 INSERT INTO event_rsvps (event_id, user_id, status) VALUES
 (3,5,'going'),(3,6,'going'),(3,7,'going'),(3,8,'going'),(3,9,'going'),(3,10,'going'),
 (7,5,'going'),(7,6,'going'),(7,10,'going'),(7,11,'going'),(7,12,'going'),(7,13,'going'),
@@ -685,9 +650,7 @@ INSERT INTO event_rsvps (event_id, user_id, status) VALUES
 (30,14,'going'),(30,10,'going');
 
 
--- ─────────────────────────────────────────
--- SAMPLE COMMENTS
--- ─────────────────────────────────────────
+
 INSERT INTO comments (post_id, user_id, content) VALUES
 (9,6,'I am in for the study group! Thursday 4pm works. I found some solid Larman UML diagrams on Lucidchart that match what we did in class. Sharing in the BSc Software space.'),
 (9,7,'Same here. Also bringing the activity diagrams from the CSD 401 past paper 2024. Library 4th floor quiet zone has enough space for 6 people.'),
@@ -697,9 +660,7 @@ INSERT INTO comments (post_id, user_id, content) VALUES
 (19,9,'I think it is A4 only and black and white. Colour printing is KSH 20 per page at the library desk.');
 
 
--- ─────────────────────────────────────────
--- FOLLOWS
--- ─────────────────────────────────────────
+
 INSERT INTO follows (follower_id, following_id) VALUES
 (5,2),(5,6),(5,7),(5,8),
 (6,5),(6,2),(6,9),
@@ -709,9 +670,7 @@ INSERT INTO follows (follower_id, following_id) VALUES
 (13,4),(13,14),
 (14,13),(14,4);
 
--- ═══════════════════════════════════════════
--- ADVERTISEMENT BANNERS
--- ═══════════════════════════════════════════
+
 CREATE TABLE IF NOT EXISTS banners (
     id           INT AUTO_INCREMENT PRIMARY KEY,
     title        VARCHAR(255)  NOT NULL,

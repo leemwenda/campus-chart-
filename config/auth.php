@@ -1,7 +1,5 @@
 <?php
-// ============================================================
-// KCA CHART - Auth & Session Helpers
-// ============================================================
+
 require_once __DIR__ . '/db.php';
 
 function startSession(): void {
